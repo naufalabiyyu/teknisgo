@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_breadcrumb/flutter_breadcrumb.dart';
 import 'package:teknisigo/theme.dart';
 
 class DetailProduct extends StatefulWidget {
@@ -17,6 +18,8 @@ class _DetailProductState extends State<DetailProduct> {
   ];
 
   int currentIndex = 0;
+
+  bool isReadmore = false;
 
   @override
   Widget build(BuildContext context) {
@@ -146,6 +149,16 @@ class _DetailProductState extends State<DetailProduct> {
       );
     }
 
+    Widget buildText(String text) {
+      final lines = isReadmore ? null : 3;
+      return Text(
+        text,
+        textAlign: TextAlign.justify,
+        maxLines: lines,
+        overflow: isReadmore ? TextOverflow.visible : TextOverflow.ellipsis,
+      );
+    }
+
     Widget detailInfo() {
       return Container(
         margin: const EdgeInsets.only(top: 16),
@@ -158,54 +171,70 @@ class _DetailProductState extends State<DetailProduct> {
               'Informasi Produk',
               style: primaryTextStyle.copyWith(fontSize: 16, fontWeight: bold),
             ),
-            const SizedBox(height: 12),
-            Row(
+            Table(
+              columnWidths: const {
+                1: FractionColumnWidth(0.6),
+              },
+              border: const TableBorder(
+                horizontalInside:
+                    BorderSide(color: Color(0xffF3F3F3), width: 1),
+              ),
               children: [
-                const Text('Min. Pemesanan'),
-                const SizedBox(width: 5),
-                Text('1 Pcs'),
-              ],
-            ),
-            const SizedBox(height: 10),
-            const Divider(
-              thickness: 1,
-              color: Color(0xffF0F3F8),
-            ),
-            const SizedBox(height: 10),
-            Row(
-              children: [
-                const Text('Kategori'),
-                const SizedBox(width: 58),
-                RichText(
-                  text: TextSpan(
-                    style: primaryTextStyle.copyWith(fontSize: 14),
-                    children: [
-                      TextSpan(
-                        text: 'Aksesoris',
+                TableRow(
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(top: 16, bottom: 10),
+                      child: Text(
+                        'Min. Pemesanan',
                         style: primaryTextStyle.copyWith(
-                            fontWeight: bold, color: primaryColor),
-                      ),
-                      const WidgetSpan(
-                        child: Padding(
-                          padding: const EdgeInsets.only(left: 5),
+                          color: Color(0xff575757),
                         ),
                       ),
-                      const TextSpan(text: '>'),
-                      const WidgetSpan(
-                        child: Padding(
-                          padding: const EdgeInsets.only(left: 5),
-                        ),
-                      ),
-                      TextSpan(
-                        text: 'Hardware',
-                        style: primaryTextStyle.copyWith(
-                          fontWeight: bold,
-                          color: primaryColor,
-                        ),
-                      ),
-                    ],
-                  ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(top: 16, bottom: 10),
+                      child: Text('1 Pcs'),
+                    ),
+                  ],
                 ),
+                TableRow(
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(top: 10, bottom: 0),
+                      child: Text(
+                        'Kategori',
+                        style: primaryTextStyle.copyWith(
+                          color: Color(0xff575757),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 10, bottom: 0),
+                      child: BreadCrumb(
+                        items: [
+                          BreadCrumbItem(
+                            content: Text(
+                              'Aksesoris',
+                              style: primaryTextStyle.copyWith(
+                                  fontWeight: bold, color: primaryColor),
+                            ),
+                          ),
+                          BreadCrumbItem(
+                            content: Text(
+                              'Hardisk',
+                              style: primaryTextStyle.copyWith(
+                                  fontWeight: bold, color: primaryColor),
+                            ),
+                          ),
+                        ],
+                        divider: const Icon(
+                          Icons.chevron_right,
+                          color: Color(0xff898989),
+                        ),
+                      ),
+                    ),
+                  ],
+                )
               ],
             ),
             const SizedBox(height: 10),
@@ -214,23 +243,31 @@ class _DetailProductState extends State<DetailProduct> {
               color: Color(0xffF0F3F8),
             ),
             const SizedBox(height: 12),
-            Text(
-              "Matte surface with a medium body structure. Woven with plain weave and applicable for Men or Women Shirt, Dress and Beddings...",
-              textAlign: TextAlign.justify,
+            buildText(
+              'Matte surface with a medium body structure. Woven with plain weave and applicable for Men or Women Shirt, Dress and Beddings.\nFibre Content: 100% Cotton;\n1 Roll: 120 yard;\nWidth: 147 cm;',
             ),
             const SizedBox(height: 5),
-            Row(
-              children: [
-                Text(
-                  'Selengkapnya',
-                  style: primaryTextStyle.copyWith(
-                      color: primaryColor, fontWeight: bold),
-                ),
-                Icon(
-                  Icons.chevron_right_sharp,
-                  color: primaryColor,
-                ),
-              ],
+            TextButton(
+              onPressed: () {
+                setState(() {
+                  isReadmore = !isReadmore;
+                });
+              },
+              child: Row(
+                children: [
+                  Text(
+                    isReadmore ? 'Lebih Sedikit' : 'Selengkapnya',
+                    style: primaryTextStyle.copyWith(
+                        color: primaryColor, fontWeight: bold),
+                  ),
+                  Icon(
+                    isReadmore
+                        ? Icons.keyboard_arrow_up_rounded
+                        : Icons.keyboard_arrow_down_rounded,
+                    color: primaryColor,
+                  ),
+                ],
+              ),
             ),
           ],
         ),
@@ -255,9 +292,9 @@ class _DetailProductState extends State<DetailProduct> {
           ),
           Container(
             color: Colors.white,
-            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 16),
             width: double.infinity,
-            height: 70,
+            height: 78,
             child: TextButton(
               onPressed: () {},
               style: TextButton.styleFrom(

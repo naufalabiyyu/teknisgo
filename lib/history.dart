@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:teknisigo/theme.dart';
 
 class HistoryPage extends StatefulWidget {
@@ -279,12 +277,13 @@ class HistoryCard extends StatelessWidget {
         ),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
-          color: Color(0xffE4E9F2),
+          color: const Color(0xffE4E9F2),
         ),
       );
     }
 
     return Container(
+      width: double.infinity,
       margin: const EdgeInsets.only(right: 16, bottom: 16, left: 16),
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
@@ -294,6 +293,7 @@ class HistoryCard extends StatelessWidget {
       child: Column(
         children: [
           Row(
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Image.asset(
                 'assets/service-laptop.png',
@@ -301,71 +301,81 @@ class HistoryCard extends StatelessWidget {
                 height: 71,
               ),
               const SizedBox(width: 12),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      Text(
-                        '25/09/2022',
-                        style: primaryTextStyle.copyWith(
-                          fontSize: 12,
-                          fontWeight: regular,
-                          color: Color(0xff8F9BB3),
+              Flexible(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Text(
+                          '25/09/2022',
+                          style: primaryTextStyle.copyWith(
+                            fontSize: 12,
+                            fontWeight: regular,
+                            color: Color(0xff8F9BB3),
+                          ),
                         ),
-                      ),
-                      const SizedBox(width: 12),
-                      Text(
-                        '#000083979',
-                        style: secondaryTextStyle.copyWith(
-                          fontSize: 12,
-                          fontWeight: bold,
-                          color: Color(0xff8F9BB3),
+                        const SizedBox(width: 12),
+                        Flexible(
+                          child: Text(
+                            '#000083979',
+                            style: secondaryTextStyle.copyWith(
+                              fontSize: 12,
+                              fontWeight: bold,
+                              color: Color(0xff8F9BB3),
+                            ),
+                            overflow: TextOverflow.ellipsis,
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 4),
-                  Text(
-                    'Perbaikan Laptop',
-                    style: primaryTextStyle.copyWith(
-                      fontSize: 14,
-                      fontWeight: semiBold,
+                      ],
                     ),
-                  ),
-                  const SizedBox(height: 4),
-                  Row(
-                    children: [
-                      Text(
-                        'Asus',
-                        style: primaryTextStyle.copyWith(
-                          fontSize: 12,
-                        ),
+                    const SizedBox(height: 4),
+                    Text(
+                      'Perbaikan Laptop',
+                      style: primaryTextStyle.copyWith(
+                        fontSize: 14,
+                        fontWeight: semiBold,
                       ),
-                      customDot(10),
-                      Text(
-                        'Gaming',
-                        style: primaryTextStyle.copyWith(
-                          fontSize: 12,
-                        ),
-                      ),
-                      customDot(10),
-                      Text(
-                        'ROG',
-                        style: primaryTextStyle.copyWith(
-                          fontSize: 12,
-                        ),
-                      )
-                    ],
-                  ),
-                  const SizedBox(height: 4),
-                  Text(
-                    'Lcd Blank',
-                    style: primaryTextStyle.copyWith(
-                      fontSize: 12,
+                      overflow: TextOverflow.ellipsis,
                     ),
-                  )
-                ],
+                    const SizedBox(height: 4),
+                    Row(
+                      children: [
+                        Text(
+                          'Asus',
+                          style: primaryTextStyle.copyWith(
+                            fontSize: 12,
+                          ),
+                        ),
+                        customDot(10),
+                        Text(
+                          'Gaming',
+                          style: primaryTextStyle.copyWith(
+                            fontSize: 12,
+                          ),
+                        ),
+                        customDot(10),
+                        Expanded(
+                          child: Text(
+                            'ROG',
+                            style: primaryTextStyle.copyWith(
+                              fontSize: 12,
+                            ),
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        )
+                      ],
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      'Lcd Blank',
+                      style: primaryTextStyle.copyWith(
+                        fontSize: 12,
+                      ),
+                      overflow: TextOverflow.ellipsis,
+                    )
+                  ],
+                ),
               )
             ],
           ),
@@ -418,7 +428,7 @@ class HistoryCard extends StatelessWidget {
                     ),
                     const SizedBox(width: 7),
                     Text(
-                      'Menunggu Pembayaran',
+                      'Menunggu Pembayaransasaas',
                       style: primaryTextStyle.copyWith(
                           fontSize: 11,
                           fontWeight: medium,

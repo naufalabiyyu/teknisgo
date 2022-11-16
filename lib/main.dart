@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:teknisigo/detail_product.dart';
 import 'package:teknisigo/history.dart';
+import 'package:teknisigo/home.dart';
 import 'package:teknisigo/theme.dart';
 
 void main() {
@@ -41,12 +42,16 @@ class MyHomePage extends StatelessWidget {
                     primaryTextStyle.copyWith(fontSize: 16, fontWeight: bold),
               ),
             ),
-            Text(
-              'Lihat Semua',
-              style: primaryTextStyle.copyWith(
-                fontSize: 15,
-                fontWeight: regular,
-                color: Color(0xff28ACAF),
+            GestureDetector(
+              onTap: () => Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => HomeView())),
+              child: Text(
+                'Lihat Semua',
+                style: primaryTextStyle.copyWith(
+                  fontSize: 15,
+                  fontWeight: regular,
+                  color: Color(0xff28ACAF),
+                ),
               ),
             ),
           ],

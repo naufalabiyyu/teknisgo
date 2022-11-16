@@ -33,6 +33,9 @@ dependencies:
     sdk: flutter
   flutter_breadcrumb: ^1.0.1
   google_fonts: ^3.0.1
+  responsive_ui: ^3.0.0
+  responsive_sizer: ^3.1.1
+  flutter_svg: ^1.1.6
 
 dev_dependencies:
   flutter_lints: ^2.0.0

@@ -262,7 +262,7 @@ class _HomeViewState extends State<HomeView> {
                 ),
               ),
             ),
-            SizedBox(height: duadua),
+            const SizedBox(height: duadua),
             Container(
               height: 150,
               child: ListView(

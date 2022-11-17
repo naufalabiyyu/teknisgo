@@ -3,6 +3,8 @@ import 'package:google_fonts/google_fonts.dart';
 
 Color bgColor = Color(0xffCF0F5F8);
 Color primaryColor = Color(0xff28ACAF);
+const Color accentColor = Color(0xFF272727);
+const Color containerColor = Color(0xFFF0F2F5);
 
 TextStyle primaryTextStyle = GoogleFonts.lato(
   color: Color(0xff222B45),
